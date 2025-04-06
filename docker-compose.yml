@@ -1,0 +1,42 @@
+services:
+  backend:
+    build: ./TEST-MERN/server
+    ports:
+      - "5001:5001"
+    networks:
+      - mern_network
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/ecommerce
+      - PORT=5001
+    # volumes:
+    #   - ./server/product-images:/app/product-images  # Mount local images
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./TEST-MERN/client
+    ports:
+      - "3000:3000"
+    networks:
+      - mern_network
+    environment:
+      - VITE_API_URL=http://backend:5001 # Use service name for internal communication
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    networks:
+      - mern_network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  mern_network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
