@@ -19,17 +19,17 @@ jobs:
 
       - name: Install dependencies (Backend)
         run: |
-          cd /server
+          cd ./server
           npm install
 
       - name: Run ESLint (Backend)
         run: |
-          cd /server
+          cd ./server
           npm run lint
 
       - name: Run tests (Backend)
         run: |
-          cd /server
+          cd ./server
           npm test
 
     #   - name: Install dependencies (Frontend)...
