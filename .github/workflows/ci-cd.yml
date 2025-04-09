@@ -61,10 +61,10 @@ jobs:
 
       - name: Build and push backend image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-backend:latest  /server
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-backend:latest  ./server
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-backend:latest
 
       - name: Build and push frontend image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-frontend:latest  /client
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-frontend:latest  ./client
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-frontend:latest
