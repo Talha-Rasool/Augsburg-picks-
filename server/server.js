@@ -14,7 +14,7 @@ import "dotenv/config";
 // In server/server.js
 app.use(
   cors({
-    //origin: "http://localhost:3000",
+    origin: "http://3.90.66.223:3000",
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
