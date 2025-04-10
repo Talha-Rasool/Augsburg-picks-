@@ -16,9 +16,9 @@ spec:
         - name: augsburg-picks-backend
           image: rasooltalha/augsburg-picks-backend:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 5001
           env:
             - name: MONGODB_URI
               value: "mongodb://mongodb:27017/ecommerce"
             - name: PORT
-              value: "5000"
+              value: "5001"
