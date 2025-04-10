@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: augsburg-picks-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: augsburg-picks-backend
+  template:
+    metadata:
+      labels:
+        app: augsburg-picks-backend
+    spec:
+      containers:
+        - name: augsburg-picks-backend
+          image: rasooltalha/augsburg-picks-backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGODB_URI
+              value: "mongodb://mongodb:27017/ecommerce"
+            - name: PORT
+              value: "5000"

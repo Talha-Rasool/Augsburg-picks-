@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: augsburg-picks-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: augsburg-picks-frontend
+  template:
+    metadata:
+      labels:
+        app: augsburg-picks-frontend
+    spec:
+      containers:
+        - name: augsburg-picks-frontend
+          image: rasooltalha/augsburg-picks-frontend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://54.89.161.219:7070"
