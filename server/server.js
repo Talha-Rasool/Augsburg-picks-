@@ -1,7 +1,6 @@
 dotenv.config();
 import cors from "cors";
 import express from "express";
-//import mongoose from "mongoose";
 import productRoutes from "./routes/productRoutes.js"; // Note .js extension
 import orderRoutes from "./routes/orderRoutes.js";
 import dotenv from "dotenv";
@@ -12,11 +11,12 @@ import "dotenv/config";
 // Middleware
 //app.use(cors());
 // In server/server.js
+//"http://localhost:3000"
 app.use(
   cors({
-    //   origin: "http://3.90.66.223:9090",
-    //   methods: ["GET", "POST", "DELETE"],
-    //   allowedHeaders: ["Content-Type"],
+    origin: "*",
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 app.use(express.json());
