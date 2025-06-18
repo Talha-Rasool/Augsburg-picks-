@@ -86,6 +86,12 @@ jobs:
           MONGO_PASS: ${{ secrets.MONGO_PASS }}
           MONGO_DB: ${{ secrets.MONGO_DB }}
 
+      - name: Validate secrets
+        run: |
+          test -n "${{ secrets.MONGO_USER }}" || (echo "Missing MONGO_USER" && exit 1)
+          test -n "${{ secrets.MONGO_PASS }}" || (echo "Missing MONGO_PASS" && exit 1)
+          test -n "${{ secrets.MONGO_DB }}" || (echo "Missing MONGO_DB" && exit 1)
+
       - name: Apply all Kubernetes manifests
         run: |
           kubectl config set-context --current 
