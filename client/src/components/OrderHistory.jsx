@@ -94,7 +94,7 @@ const OrderHistory = () => {
               <React.Fragment key={index}>
                 <ListItem>
                   <ListItemText
-                    primary={item.productId.name}
+                    primary={item.productId?.name || "Product not found"}
                     secondary={`Quantity: ${item.quantity} - $${(
                       item.productId.price * item.quantity
                     ).toFixed(2)}`}

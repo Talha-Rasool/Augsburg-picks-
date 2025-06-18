@@ -1,4 +1,4 @@
-FROM node:18.9.0
+FROM node:latest
 
 # Create app directory inside the container
 
