@@ -3,7 +3,18 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     // Remove deprecated options (no longer needed in Mongoose 6+)
-    const MONGODB_URI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}?authSource=admin`;
+
+    const host = process.env.MONGO_HOST;
+    const port = process.env.MONGO_PORT;
+    const user = process.env.MONGO_USER;
+    const pass = process.env.MONGO_PASS;
+    const db = process.env.MONGO_DB;
+
+    if (!host || !port || !user || !pass || !db) {
+      console.error("❌ Missing MongoDB environment variables");
+      process.exit(1);
+    }
+    const MONGODB_URI = `mongodb://${user}:${pass}@${host}:${port}/${db}?authSource=admin`;
 
     const conn = await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
