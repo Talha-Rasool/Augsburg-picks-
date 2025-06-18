@@ -3,7 +3,12 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     // Remove deprecated options (no longer needed in Mongoose 6+)
-    const conn = await mongoose.connect(process.env.MONGODB_URI);
+    const MONGODB_URI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}?authSource=admin`;
+
+    const conn = await mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
     console.log("✅ MongoDB Connected to DB:", conn.connection.name);
 
@@ -22,16 +27,3 @@ const connectDB = async () => {
 };
 
 export default connectDB;
-
-// mongoose
-//   .connect(process.env.MONGODB_URI)
-//   .then(async () => {
-//     console.log("✅ MongoDB Connected to DB:", mongoose.connection.name);
-//     console.log(
-//       "📌 Collections:",
-//       (await mongoose.connection.db.listCollections().toArray()).map(
-//         (c) => c.name
-//       )
-//     );
-//   })
-//   .catch((err) => console.error("❌ MongoDB connection error:", err));

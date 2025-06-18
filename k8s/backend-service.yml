@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: augsburg-picks-backend
+  name: backend-service
 spec:
   selector:
     app: augsburg-picks-backend

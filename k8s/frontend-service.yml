@@ -1,12 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: augsburg-picks-frontend
+  name: frontend-service
 spec:
   selector:
     app: augsburg-picks-frontend
   ports:
     - protocol: TCP
-      port: 3000
+      port: 80
       targetPort: 3000
-  type: NodePort # Use NodePort for external access

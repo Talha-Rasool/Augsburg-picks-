@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: augsburg-picks-backend
+  namespace: talha-rasool-dev
 spec:
   replicas: 1
   selector:
@@ -15,10 +16,32 @@ spec:
       containers:
         - name: augsburg-picks-backend
           image: rasooltalha/augsburg-picks-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5001
           env:
-            - name: MONGODB_URI
-              value: "mongodb://mongodb:27017/ecommerce"
-            - name: PORT
-              value: "5001"
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_USER
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_PASS
+            - name: MONGO_DB
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_DB
+            - name: MONGO_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_HOST
+            - name: MONGO_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: MONGO_PORT
