@@ -1,10 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-# Check if seeding was already done
-if [ ! -f .seeded ]; then
-  node seed.js    # Run seeding
-  touch .seeded   # Create a flag file
+FLAG_FILE="/tmp/.seeded"  # Use /tmp instead of the working dir
+
+if [ ! -f "$FLAG_FILE" ]; then
+  echo "🌱 Seeding database..."
+  node seed.js
+  touch "$FLAG_FILE"
+else
+  echo "✅ Seed already applied. Skipping..."
 fi
 
-# Start the server (always)
+# Start the server
 node server.js
