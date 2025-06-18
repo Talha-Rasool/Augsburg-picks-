@@ -19,4 +19,4 @@ spec:
             - containerPort: 3000
           env:
             - name: REACT_APP_API_URL
-              value: "http://backend-service:5001"
+              value: "https://backend-service:5001"
