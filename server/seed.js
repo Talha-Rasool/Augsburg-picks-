@@ -4,24 +4,37 @@ import Product from "./models/Product.js";
 
 const sampleProducts = [
   {
-    name: "Earbuds",
+    name: "Nike Air ",
     price: 59.99,
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=150",
+    image:
+      "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=80&w=1740",
   },
   {
-    name: "Smart Watch",
+    name: "Keyboard",
     price: 199.99,
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150",
+    image: "https://images.unsplash.com/photo-1743862558324-64de6d680fbb?w=500",
   },
   {
-    name: "Bluetooth Speaker",
+    name: "Tablet",
     price: 89.99,
-    image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=150",
+    image: "https://images.unsplash.com/photo-1702390734475-d81dd8ae8fde?w=500",
   },
   {
-    name: "Phone Charger",
+    name: "Headphones",
     price: 19.99,
-    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=150",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1740",
+  },
+  {
+    name: "Laptop wireless mouse",
+    price: 39.99,
+    image:
+      "https://images.unsplash.com/photo-1527814050087-3793815479db?q=80&w=1928",
+  },
+  {
+    name: "Phones",
+    price: 699.99,
+    image: "https://images.unsplash.com/photo-1616410011236-7a42121dd981?w=500",
   },
 ];
 

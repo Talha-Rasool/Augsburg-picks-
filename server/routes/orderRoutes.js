@@ -70,5 +70,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//module.exports = router;
-export default router; // This is the critical line
+export default router;

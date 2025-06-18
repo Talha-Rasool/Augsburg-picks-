@@ -19,6 +19,7 @@ app.use(
     allowedHeaders: ["Content-Type"],
   })
 );
+
 app.use(express.json());
 connectDB()
   .then(() => {
@@ -30,26 +31,6 @@ connectDB()
   .catch((err) => {
     console.error("Failed to start:", err);
   });
-
-// make seprate file for db connection.
-// Database connection
-// mongoose
-//   .connect(process.env.MONGODB_URI)
-//   .then(() => console.log("Connected to MongoDB"))
-//   .catch((err) => console.error("MongoDB connection error:", err));
-
-// mongoose
-//   .connect(process.env.MONGODB_URI)
-//   .then(async () => {
-//     console.log("✅ MongoDB Connected to DB:", mongoose.connection.name);
-//     console.log(
-//       "📌 Collections:",
-//       (await mongoose.connection.db.listCollections().toArray()).map(
-//         (c) => c.name
-//       )
-//     );
-//   })
-//   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // Routes
 app.use("/api/products", productRoutes);
