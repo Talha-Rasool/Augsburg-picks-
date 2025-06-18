@@ -17,6 +17,7 @@ spec:
         - name: augsburg-picks-backend
           image: rasooltalha/augsburg-picks-backend:latest
           imagePullPolicy: Always
+
           ports:
             - containerPort: 5001
           env:
@@ -36,12 +37,6 @@ spec:
                   name: mongodb-secret
                   key: MONGO_DB
             - name: MONGO_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-secret
-                  key: MONGO_HOST
+              value: "mongodb"
             - name: MONGO_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-secret
-                  key: MONGO_PORT
+              value: "27017"
