@@ -14,12 +14,13 @@ const connectDB = async () => {
       console.error("❌ Missing MongoDB environment variables");
       process.exit(1);
     }
+    console.log(
+      `🔗 Connecting to MongoDB at ${host}:${port} with user ${user} and DB ${db}`
+    );
+
     const MONGODB_URI = `mongodb://${user}:${pass}@${host}:${port}/${db}?authSource=admin`;
 
-    const conn = await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const conn = await mongoose.connect(MONGODB_URI);
 
     console.log("✅ MongoDB Connected to DB:", conn.connection.name);
 
