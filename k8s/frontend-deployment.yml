@@ -15,6 +15,7 @@ spec:
       containers:
         - name: augsburg-picks-frontend
           image: rasooltalha/augsburg-picks-frontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
