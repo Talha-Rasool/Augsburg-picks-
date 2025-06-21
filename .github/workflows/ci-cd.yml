@@ -79,7 +79,11 @@ jobs:
 
       - name: Create Secret from Template
         run: |
+
+          echo "--- RENDERED ---"
+          envsubst < k8s/mongodb-secrets.yml
           envsubst < k8s/mongodb-secrets.yml > k8s/mongodb-secret-rendered.yml
+          cat k8s/mongodb-secret-rendered.yml
           kubectl apply -f k8s/mongodb-secret-rendered.yml
         env:
           MONGO_USER: ${{ secrets.MONGO_USER }}
