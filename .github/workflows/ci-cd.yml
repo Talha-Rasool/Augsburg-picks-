@@ -101,6 +101,7 @@ jobs:
       - name: Apply all Kubernetes manifests
         run: |
           kubectl config set-context --current 
+          kubectl apply -f mongo-secret.yaml
           for file in k8s/*.yml; do
             echo "Applying $file"
             kubectl apply -f "$file"
