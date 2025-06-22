@@ -77,18 +77,20 @@ jobs:
       - name: set KUBECONFIG environment variable
         run: echo "KUBECONFIG=$PWD/kubeconfig.yaml" >> $GITHUB_ENV
 
-      - name: Create Secret from Template
+      - name: Create mongo-secret.yaml
         run: |
-
-          echo "--- RENDERED ---"
-          envsubst < k8s/mongodb-secrets.yml
-          envsubst < k8s/mongodb-secrets.yml > k8s/mongodb-secret-rendered.yml
-          cat k8s/mongodb-secret-rendered.yml
-          kubectl apply -f k8s/mongodb-secret-rendered.yml
-        env:
-          MONGO_USER: ${{ secrets.MONGO_USER }}
-          MONGO_PASS: ${{ secrets.MONGO_PASS }}
-          MONGO_DB: ${{ secrets.MONGO_DB }}
+          cat <<EOF > mongo-secret.yaml
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: mongo-secret
+            namespace: talha-rasool-dev
+          type: Opaque
+          stringData:
+            MONGO_INITDB_ROOT_USERNAME: ${{ secrets.MONGO_USER }}
+            MONGO_INITDB_ROOT_PASSWORD: ${{ secrets.MONGO_PASS }}
+            MONGODB_URI: mongodb://${{ secrets.MONGO_USER }}:${{ secrets.MONGO_PASS }}@mongodb:27017/ecommerce?authSource=admin
+          EOF
 
       - name: Validate secrets
         run: |

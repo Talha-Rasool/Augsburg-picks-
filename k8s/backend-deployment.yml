@@ -20,23 +20,12 @@ spec:
 
           ports:
             - containerPort: 5001
+
           env:
-            - name: MONGO_USER
+            - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-secret
-                  key: MONGO_USER
-            - name: MONGO_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-secret
-                  key: MONGO_PASS
-            - name: MONGO_DB
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-secret
-                  key: MONGO_DB
-            - name: MONGO_HOST
-              value: "mongodb"
-            - name: MONGO_PORT
-              value: "27017"
+                  name: mongo-secret
+                  key: MONGODB_URI
+            - name: PORT
+              value: "5001"
