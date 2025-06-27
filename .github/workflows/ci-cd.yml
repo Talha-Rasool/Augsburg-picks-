@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [dev]
+    branches: [kind-cluster]
 
 jobs:
   lint-and-test:
@@ -84,7 +84,6 @@ jobs:
           kind: Secret
           metadata:
             name: mongo-secret
-            namespace: talha-rasool-dev
           type: Opaque
           stringData:
             MONGO_INITDB_ROOT_USERNAME: ${{ secrets.MONGO_USER }}
