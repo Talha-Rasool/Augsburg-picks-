@@ -63,7 +63,7 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/augsburg-picks-frontend:latest
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-and-push
     steps:
       - name: Checkout code
@@ -105,3 +105,11 @@ jobs:
             echo "Applying $file"
             kubectl apply -f "$file"
           done
+
+      - name: Clean Docker & Disk
+        if: always()
+        run: |
+          echo "🧹 Cleaning up..."
+          docker system prune -af --volumes
+          rm -rf $GITHUB_WORKSPACE/*
+          echo "✅ Cleaned up workspace and Docker"
