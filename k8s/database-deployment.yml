@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
-  namespace: talha-rasool-dev
+
 spec:
   replicas: 1
   selector:
@@ -30,12 +30,3 @@ spec:
                 secretKeyRef:
                   name: mongo-secret
                   key: MONGO_INITDB_ROOT_PASSWORD
-
-          volumeMounts:
-            - name: mongodb-storage
-              mountPath: /data/db
-
-      volumes:
-        - name: mongodb-storage
-          persistentVolumeClaim:
-            claimName: mongo-pvc
